@@ -12,27 +12,37 @@ asignada porque la cantidad de personas es mayor a la cantidad
 de bancos disponibles. El aula Azul es descartada porque quedan
 más bancos inutilizados que en el aula Verde (6 versus 1).*/
 
-let dimensiónArreglo: number = Number(
-  prompt("Ingrese la cantidad de infantes entre 1 y 40")
+let cantidadInfantes: number = Number(
+  prompt("Ingrese la cantidad de infantes")
 );
-let cantidadInfantes: number[] = new Array(dimensiónArreglo);
-let i: number = 0;
+let arrayAulaAmarilla: number[] = new Array(30);
+let arrayAulaVerde: number[] = new Array(35);
+let arrayAulaAzul: number[] = new Array(40);
 
-for (i = 0; i < cantidadInfantes.length; i++) {
-  cantidadInfantes[i] = cantidadInfantes.length;
-  console.log(
-    `La cantidad total que hay de alumnos es: ${cantidadInfantes[i]}`
-  );
-}
-
-for (i = 0; i < cantidadInfantes.length; i++) {
-  if (i >= 1 || i <= 30) {
-    console.log(`El infante irá a la sala Amarilla`);
-  } else if (i >= 31 || i <= 35) {
-    console.log(`El infante irá a la sala Verde`);
-  } else if (i >= 36 || i <= 40) {
-    console.log(`El infante irá a la sala Azul`);
-  } else if (i > 40 || i <= 0) {
-    console.log(`EROR: usted ha ingresado una cantidad mayor a 40 ó menor a 0`);
+function asignarAula(cantidadAlumnos: number) {
+  if (cantidadAlumnos <= 0) {
+    console.log(
+      `La cantidad ingresada de infantes (${cantidadAlumnos}) no es posible`
+    );
+  } else if (cantidadAlumnos > 40) {
+    console.log(
+      `No hay suficiente espacio para los ${cantidadAlumnos} infantes`
+    );
+  } else if (
+    cantidadAlumnos <= arrayAulaAzul.length &&
+    cantidadAlumnos > arrayAulaVerde.length
+  ) {
+    console.log(`Los ${cantidadAlumnos} infantes ingresados van al aula Azul`);
+  } else if (
+    cantidadAlumnos <= arrayAulaVerde.length &&
+    cantidadAlumnos > arrayAulaAmarilla.length
+  ) {
+    console.log(`Los ${cantidadAlumnos} infantes ingresados van al aula Verde`);
+  } else if (cantidadAlumnos <= arrayAulaAmarilla.length) {
+    console.log(
+      `Los ${cantidadAlumnos} infantes ingresados van al aula Amarilla`
+    );
   }
 }
+
+asignarAula(cantidadInfantes);
